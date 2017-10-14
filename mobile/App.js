@@ -1,37 +1,33 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import { AppRegistry, FlatList, StyleSheet, Text, View, Button } from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
-
-export default class App extends Component<{}> {
+export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
+        <View style={styles.header}>
+          <Button
+            style={styles.newItemButton}
+            title="+"
+            color="#000"
+            accessibilityLabel="Learn more about this purple button"
+            />
+        </View>
+        <FlatList
+          data={[
+            {key: 'Devin'},
+            {key: 'Jackson'},
+            {key: 'James'},
+            {key: 'Joel'},
+            {key: 'John'},
+            {key: 'Jillian'},
+            {key: 'Jimmy'},
+            {key: 'Julie'},
+          ]}
+          renderItem={
+            ({item}) => <Text style={styles.item}>{item.key}</Text>
+        }
+        />
       </View>
     );
   }
@@ -40,18 +36,24 @@ export default class App extends Component<{}> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    flexDirection: 'column',
+    paddingTop: 22,
+    backgroundColor: '#898'
   },
-  welcome: {
+  header: {
+    height: 50,
+    alignItems: 'flex-end'
+  },
+  item: {
+    padding: 10,
     fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+    height: 50,
+    backgroundColor: '#fff',
+    marginTop: 5
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+  newItemButton: {
+    fontSize:30,
+    color: '#000',
+    marginRight: 30
+  }
+})
